@@ -12,7 +12,7 @@ class NetworkManager {
     
     static let shared = NetworkManager()
     
-    func fetchData(from urlString: String, with complition: @escaping (Character) -> Void) {
+    func fetchData(from urlString: String, with delivery: @escaping (Character) -> Void) {
         
         guard let url = URL(string: urlString) else { return }
         
@@ -22,7 +22,7 @@ class NetworkManager {
             
             do {
                 let character = try JSONDecoder().decode(Character.self, from: data)
-                complition(character)
+                delivery(character)
             } catch let jsonError {
                 print(jsonError.localizedDescription)
             }

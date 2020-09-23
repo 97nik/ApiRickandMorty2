@@ -11,7 +11,7 @@ class NetworkManagerEp {
     
     static let shared = NetworkManagerEp()
     
-    func fetchData(from urlString: String, with complition: @escaping (Episode) -> Void) {
+    func fetchData(from urlString: String, with delivery: @escaping (Episode) -> Void) {
         
         guard let url = URL(string: urlString) else { return }
         
@@ -21,7 +21,7 @@ class NetworkManagerEp {
             
             do {
                 let episode = try JSONDecoder().decode(Episode.self, from: data)
-                complition(episode)
+                delivery(episode)
             } catch let jsonError {
                 print(jsonError.localizedDescription)
             }
